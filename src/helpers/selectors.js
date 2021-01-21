@@ -21,3 +21,15 @@ export function getAppointmentsForDay(state, day) {
 
   return filteredAppointments;
 }
+
+export function getInterview(state, interview) {
+  let result = null;
+
+  if (interview) {
+    result = {};
+    result.student = interview.student;
+    // interview.interviewer is an id number
+    result.interviewer = state.interviewers[interview.interviewer]
+  }
+  return result
+}
