@@ -35,6 +35,26 @@ export default function Application(props) {
       .catch(error => console.error('ERROR inside application.js', error))
   }
 
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.delete(`/api/appointments/${id}`).then(res => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+      .catch(error => console.error('ERROR inside application.js', error))
+  }
+
   const setDay = day => setState({ ...state, day });
 
   useEffect(() => {
@@ -81,7 +101,8 @@ export default function Application(props) {
               time={appointment.time}
               interview={interview}
               interviewers={interviewers}
-              bookInterview={bookInterview}/>
+              bookInterview={bookInterview}
+              cancelInterview={cancelInterview} />
           );
         })};
         <Appointment key="last" time="5pm" />
