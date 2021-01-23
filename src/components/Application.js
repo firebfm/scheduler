@@ -32,7 +32,6 @@ export default function Application(props) {
         appointments
       });
     })
-      .catch(error => console.error('ERROR inside application.js', error))
   }
 
   function cancelInterview(id) {
@@ -52,7 +51,6 @@ export default function Application(props) {
         appointments
       });
     })
-      .catch(error => console.error('ERROR inside application.js', error))
   }
 
   const setDay = day => setState({ ...state, day });
