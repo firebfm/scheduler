@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function useApplicationData() {
@@ -20,9 +20,12 @@ function useApplicationData() {
       [id]: appointment
     };
     return axios.put(`/api/appointments/${id}`, appointment).then(res => {
+      const days = calculateSpots(state.days, appointments);
+
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
     })
   }
@@ -39,11 +42,29 @@ function useApplicationData() {
     };
 
     return axios.delete(`/api/appointments/${id}`).then(res => {
+      const days = calculateSpots(state.days, appointments);
+
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
     })
+  }
+
+  function calculateSpots(days, appointments) {
+    const result = days.map((day) => ({
+      ...day,
+      spots: day.appointments
+        .map((id) => {
+          return appointments[id]
+        })
+        .filter((appointment) => {
+          return appointment.interview === null
+        })
+        .length
+    }));
+    return result;
   }
 
   const setDay = day => setState({ ...state, day });
