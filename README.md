@@ -37,5 +37,5 @@ npm run storybook
 
 ## Final Product
 
-!["Screenshot of appointment add"]()
-!["Screenshot of appointment delete"]()
+!["Screenshot of appointment add"](https://raw.githubusercontent.com/firebfm/scheduler/master/docs/appointment-form1.png)
+!["Screenshot of appointment delete"](https://raw.githubusercontent.com/firebfm/scheduler/master/docs/appointment-form2.png)
