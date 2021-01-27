@@ -24,10 +24,11 @@ export default function Form(props) {
       return;
     }
 
-    if (interviewer === null) {
-      setError('An interviewer must be selected');
-      return;
-    }
+    // // do not call save if interviewer is not selected
+    // if (interviewer === null) {
+    //   setError('An interviewer must be selected');
+    //   return;
+    // }
     
     setError("");
     props.onSave(name, interviewer);
